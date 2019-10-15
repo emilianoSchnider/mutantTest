@@ -13,7 +13,7 @@ public class MutantDetectorApplication {
 
 	public static void main(String[] args) {
 		
-		AppConfiguration.InitializeRepository();
+		//AppConfiguration.InitializeRepository();
 		
 		SpringApplication.run(MutantDetectorApplication.class, args);
 	}

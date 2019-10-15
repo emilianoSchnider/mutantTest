@@ -6,11 +6,14 @@ import java.io.InputStream;
 import java.util.List;
 
 import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.FirestoreClient;
 
 public class AppConfiguration {	
 		
+	// ToDo: Configurar fuera de la clase.
 	private static final String AUTH_DATABASE = "{\r\n" + 
 			"  \"type\": \"service_account\",\r\n" + 
 			"  \"project_id\": \"mutant-ca9d1\",\r\n" + 
@@ -27,7 +30,18 @@ public class AppConfiguration {
 	private static InputStream serviceAccount;
 	private static FirebaseOptions options;
 	
-	public static void InitializeRepository() {
+	private static AppConfiguration appConfiguration;
+	
+	public static AppConfiguration getAppConfiguration() {
+		if (appConfiguration == null) {
+			appConfiguration = new AppConfiguration();
+		}
+		
+		return appConfiguration;
+	}
+	
+	//public static void InitializeRepository() {
+	private AppConfiguration() { 	
 		serviceAccount = new ByteArrayInputStream(AUTH_DATABASE.getBytes());
 		try {
 			options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -47,6 +61,11 @@ public class AppConfiguration {
 		}
 		
 		if (!hasBeenInitialized) {
-		FirebaseApp.initializeApp(options);}		
+			FirebaseApp.initializeApp(options);
+		}		
+	}
+	
+	public Firestore getDB() {
+		return FirestoreClient.getFirestore();
 	}
 }

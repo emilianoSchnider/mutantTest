@@ -10,26 +10,29 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
+import com.ml.mutantdetector.configuration.AppConfiguration;
 import com.ml.mutantdetector.model.DNAVerificationCounter;
 
 @Repository
 public class FirebaseDNAVerificationCounterRepository implements DNAVerificationCounterRepository {
 
-	private static Firestore db;
+	//private Firestore db = FirestoreClient.getFirestore();
 	
 	static {
-		db = FirestoreClient.getFirestore();		
+		//db = FirestoreClient.getFirestore();		
 	}
 	
 	@Override
 	public void incrementCounter(String counterType) {		
-		DocumentReference docReference = db.collection("dnaVerificationCounter").document(counterType);
+		DocumentReference docReference = AppConfiguration.getAppConfiguration().getDB()
+				.collection("dnaVerificationCounter").document(counterType);
 		docReference.update("count", FieldValue.increment(1));
 	}
 
 	@Override
 	public DNAVerificationCounter getCounter(String counterType) throws InterruptedException, ExecutionException {
-		ApiFuture<DocumentSnapshot> future = db.collection("dnaVerificationCounter").document(counterType).get();
+		ApiFuture<DocumentSnapshot> future = AppConfiguration.getAppConfiguration().getDB()
+				.collection("dnaVerificationCounter").document(counterType).get();
 		
 		DocumentSnapshot document;
 		try {
