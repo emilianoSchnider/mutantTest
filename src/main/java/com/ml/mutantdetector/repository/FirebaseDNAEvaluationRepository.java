@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.cloud.FirestoreClient;
 import com.ml.mutantdetector.configuration.AppConfiguration;
 import com.ml.mutantdetector.model.DNAEvaluation;
 
@@ -19,12 +17,6 @@ import com.ml.mutantdetector.model.DNAEvaluation;
  */
 @Repository
 public class FirebaseDNAEvaluationRepository implements DNAEvaluationRepository {
-
-	//private Firestore db = FirestoreClient.getFirestore();
-	
-	static {
-		//db = FirestoreClient.getFirestore();		
-	}
 	
 	@Override
 	public void save(DNAEvaluation dnaEvaluation) {

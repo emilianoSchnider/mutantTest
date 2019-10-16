@@ -8,19 +8,11 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.cloud.FirestoreClient;
 import com.ml.mutantdetector.configuration.AppConfiguration;
 import com.ml.mutantdetector.model.DNAVerificationCounter;
 
 @Repository
 public class FirebaseDNAVerificationCounterRepository implements DNAVerificationCounterRepository {
-
-	//private Firestore db = FirestoreClient.getFirestore();
-	
-	static {
-		//db = FirestoreClient.getFirestore();		
-	}
 	
 	@Override
 	public void incrementCounter(String counterType) {		
