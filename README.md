@@ -32,11 +32,12 @@ Desde la carpeta del proyecto, ejecutar por comando
 #### Servicio de validación de mutantes
 ##### Endpoint: [URL_API]/mutant
 ##### Ejemplo de uso desde Postman:
-* Crear nuevo Request.
-* Seleccionar método POST
-* Setear URL https://mutantapi.herokuapp.com/mutant
-* En Body, seleccionar raw y formato Json
-* Ingresar matriz a validar, ej:
+1. Crear nuevo Request.
+2. Seleccionar método POST
+3. Setear URL https://mutantapi.herokuapp.com/mutant
+4. En Body, seleccionar raw y formato Json
+5. Ingresar matriz a validar, ej:
+```json
 {
     "dna": [
         "ATGCGA",
@@ -48,18 +49,19 @@ Desde la carpeta del proyecto, ejecutar por comando
     ]
         
 }
-
+```
+![Image](https://i.ibb.co/NSvKcvC/IsMutant.png)
 
 #### Servicio de estadísticas de verificaciones
 ##### Endpoint: [URL_API]/stats
 ##### Ejemplo de uso desde Postman:
-* Crear nuevo Request.
-* Seleccionar método GET
-* Setear URL https://mutantapi.herokuapp.com/stats
+1. Crear nuevo Request.
+2. Seleccionar método GET
+3. Setear URL https://mutantapi.herokuapp.com/stats
+
+![Image](https://i.ibb.co/sFZ8Tkg/Stats.png)
 
 ##### Ejemplo desde línea de comando:
+```bash
 curl -X GET -H "Content-Type: application/json" -d '' https://mutantapi.herokuapp.com/stats
-
-
-
-
+```
